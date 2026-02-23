@@ -13,12 +13,12 @@ namespace UniBet.Controllers
             _service = service;
         }
         
-        [HttpGet("{Id}")]
-        public IActionResult GetGameData([FromQuery] int Id)
+        [HttpGet("{id}")]
+        public IActionResult GetGameData(int id)
         {
             try
             {
-                GameDTOResponse gameReponse = _service.GetGameData(Id);
+                GameDTOResponse gameReponse = _service.GetGameData(id);
                 return Ok(gameReponse);
             }
             catch (Exception ex)
@@ -39,12 +39,12 @@ namespace UniBet.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPost("Game")]
-        public IActionResult CreateGame([FromBody] GameDTORequest Game)
+        [HttpPost]
+        public IActionResult CreateGame([FromBody] GameDTORequest game)
         {
             try
             {
-                _service.CreateGame(Game);
+                _service.CreateGame(game);
                 return Created();
             }
             catch (Exception ex)
@@ -52,12 +52,12 @@ namespace UniBet.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPut("game/{Id}")]
-        public IActionResult UpdateGame([FromQuery] int Id, [FromBody] GameDTORequest Game)
+        [HttpPut("{id}")]
+        public IActionResult UpdateGame(int id, [FromBody] GameDTORequest game)
         {
             try
             {
-                GameDTOResponse gameReponse = _service.UpdateGame(Id, Game);
+                GameDTOResponse gameReponse = _service.UpdateGame(id, game);
                 return Ok(gameReponse);
             }
             catch (Exception ex)
@@ -65,12 +65,12 @@ namespace UniBet.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpDelete("")]
-        public IActionResult DeleteGame(int Id)
+        [HttpDelete("{id}")]
+        public IActionResult DeleteGame(int id)
         {
             try
             {
-                _service.DeleteGame(Id);
+                _service.DeleteGame(id);
                 return Ok();
             }
             catch (Exception ex)
