@@ -4,7 +4,7 @@
     {
         public float DepositAmount { get; set; }
         public string DepositType { get; set; }
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
 
     }
 }
